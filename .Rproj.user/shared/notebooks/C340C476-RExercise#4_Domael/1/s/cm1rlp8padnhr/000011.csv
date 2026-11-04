@@ -1,0 +1,1 @@
+"0","veggies <- c(veggies[1:5], list(""Sweet Potato"", ""Bamboo Shoots"", ""Mushroom"", ""Radish""), veggies[6:length(veggies)])"

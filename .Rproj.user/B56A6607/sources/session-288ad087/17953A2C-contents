@@ -1,0 +1,245 @@
+---
+title: "RExercise#3_Domael"
+author: "Jastine Mae Domael"
+date: "2026-10-15"
+output: html_document
+---
+
+Part A — Creating Vectors: c(), seq(), rep()
+```{r}
+scores <- c(88, 92, 79, 95, 84)
+subjects <- c("Math", "Science", "English", "History", "PE")
+```
+
+```{r}
+odds <- seq(from = 1, to = 19, by = 2)
+seq(from = 0, to = 1, length.out = 5)
+```
+
+```{r}
+rep("A", times = 4)
+rep(c("A", "B"), each = 2)
+rep(c("A", "B"), times = 2)
+```
+
+Question #1:
+
+Set up a vector named age, consisting of 15, 28, 32, 36, 27, 18, 52, 39, 42, 29, 35, 31, 27, 22, 37, 34, 19, 20, 57, 49, 50, 37, 46, 25, 17, 12, 42, 53, 41, 51, 35, 24, 33, 8.
+
+```{r}
+age <- c(15, 28, 32, 36, 27, 18, 52, 39, 42, 29, 35, 31, 27, 22, 37, 34, 19, 20, 57, 49, 50, 37, 46, 25, 17, 12, 42, 53, 41, 51, 35, 24, 33, 8)
+```
+
+a. How many data points?
+```{r}
+length(age)
+```
+  In identifying how many data points, run length(age). There are 34 data points.
+
+b. Find the reciprocal of age?
+```{r}
+1 / age
+```
+  Run 1/age to find the reciprocal of age.
+
+c. Assign also new_age <- c(age, 0, age). What happens to new_age?
+```{r}
+new_age <- c(age, 0, age)
+```
+  The new_age combines the original age vector twice with a 0 in the middle. This results in a single combined vector of length 69.
+
+d. Find the minimum and the maximum value of age.
+```{r}
+min(age)
+max(age)
+```
+  To find the minimum value of age, run min(age) and to find the maximum value of age, run max(age).
+
+Question #2:
+rep(c("A","B"), each = 2) and rep(c("A","B"), times = 2) both produce a vector of length 4, but with different element orders. Explain in your own words the difference between each and times.
+```{r}
+rep(c("A","B"), each = 2)
+rep(c("A","B"), times = 2)
+```
+  The each repeat individual letter/element first before it proceeds to the next element. While the times repeat both element or the whole vector depending on the number assigned to the "times". 
+
+Question #3:
+
+Compare seq(1, 20, by = 2) with seq(1, 20, length.out = 5). What does each argument (by vs length.out) control, and when would you use one over the other in a real analysis?
+```{r}
+seq(1, 20, by = 2)
+seq(1, 20, length.out = 5)
+```
+  The by argument specifie the spacing between consecutive numbers in a sequence, while length.out specifies the exact total number of elements desired, it allows R to calculate the spacing automatically. Use by when you need specific fixed increments (like 2 units) and length.out when you need a fixed number of data points across a range (like 100 sample points for a plot).
+
+Question #4:
+
+a. Generate a sequence for 20 to 60. Name the vector as vec_num
+```{r}
+vec_num <- 20:60
+```
+b. Get the mean for vec_num.
+```{r}
+mean(vec_num)
+```
+c. Get the sum for vec_num.
+```{r}
+sum(vec_num)
+```
+d How many data points are there in vec_num?
+```{r}
+length(vec_num)
+```
+
+Part B — Subsetting (Accessing) Vectors
+```{r}
+grades <- c(88, 92, 79, 95, 84)
+names(grades) <- c("Math", "Science", "English", "History", "PE")
+grades[3]
+grades[c(1, 4)]
+grades[c("Science", "PE")]
+```
+
+```{r}
+grades[-c(1, 4)]
+```
+
+```{r}
+grades[grades >= 85]
+```
+Question #5:
+
+Negative indexing (grades[-1]) removes an element, while logical indexing (grades[grades >= 85]) filters by a condition. Describe a real situation where you would need negative indexing, and a different situation where logical indexing would be the better tool.
+
+  We can utilize negative indexing when we want to remove particular known locations from a dataset, for example, by eliminating an ID column or the baseline control observation at position 1. While logical indexing works when you need to filter data based on criteria, like extracting only test scores that represent a passing grade, and you don't know the position of elements beforehand.
+  
+Question #6:
+
+What happens if you run grades[10] (an index that doesn’t exist)? Run it, observe the result, and explain why R responds this way instead of throwing an error.
+```{r}
+grades[10]
+```
+  R returns NA instead of throwing an error because vectors in R can grow dynamically. Returning NA enables scripts and functions to handle missing or out-of-range indices without crashing.
+  
+Question #7:
+
+Print a vector with the integers between 1 and 100 that are not divisible by 3, 5 and 7 using filter option.
+Filter(function(i) { all(i %% c(3,5,7) != 0) }, seq(100))
+Write the R code and its output.
+```{r}
+Filter(function(i) { all(i %% c(3, 5, 7) != 0) }, seq(100))
+```
+Output:
+ [1]  1  2  4  8 11 13 16 17 19 22 23 26 29 31 32 34 37 38
+[19] 41 43 44 46 47 52 53 58 59 61 62 64 67 68 71 73 74 76
+[37] 79 82 83 86 88 89 92 94 97
+
+Part C — Vector Operations and append()
+```{r}
+x <- c(1, 2, 3, 4)
+y <- c(10, 20, 30, 40)
+x + y
+x * 2
+```
+
+```{r}
+z <- c(1, 2, 3, 4, 5, 6)
+short <- c(1, 0)
+z + short
+```
+
+```{r}
+fruits <- c("apple", "banana", "cherry")
+append(fruits, "date")
+append(fruits, "kiwi", after = 1)
+```
+Question #8:
+
+In the vectors-recycling chunk, z has 6 elements and short has only 2. R still produced an answer instead of an error.
+
+Explain, in your own words, what R’s “recycling rule” did to short to make the addition work.
+
+  R's vector recycling rule automatically repeated the shorter vector (short <- c(1, 0)) three times until its length matched z (becoming c(1, 0, 1, 0, 1, 0)) because short has two elements and z has six. After that, R added z to the expanded vector using standard element-wise addition which produced c(2, 2, 4, 4, 6, 6).
+  
+Question #9: Now try adding z (length 6) to c(1, 0, 1) (length 3) instead. Does it work cleanly?
+```{r}
+z + c(1, 0, 1)
+```
+It does work cleanly without any warnings.
+
+Then try adding z to c(1, 0, 1, 1) (length 4). Compare the warning (or lack of one) in each case, and explain what condition determines whether R recycles silently versus with a warning.
+```{r}
+z + c(1, 0, 1, 1)
+```
+  When adding z to c(1, 0, 1, 1), R completes the calculation but displays a warning: longer object length is not a multiple of shorter object length. When the length of the longer vector is an exact integer multiple of the length of the shorter vector (like 6 and 3), R recycles silently. R must, however, truncate the recycled vector mid-repetition if the length of the longer vector is not an exact multiple (for example, 6 and 4), and this alerts the user to a possible length mismatch.
+  
+Part D — Lists: Creating and Subsetting
+```{r}
+student <- list(
+  name = "Maria Santos",
+  age = 20,
+  grades = c(88, 92, 79),
+  is_enrolled = TRUE
+)
+```
+
+```{r}
+student["grades"]
+class(student["grades"])
+```
+
+```{r}
+student[["grades"]]
+class(student[["grades"]])
+```
+
+```{r}
+student$name
+```
+
+```{r}
+student$grades[2]
+```
+Question #10:
+
+student["grades"] and student[["grades"]] look similar but return objects of different classes.
+
+Run class() on each and explain the difference in what single-bracket [ ] versus double-bracket [[ ]] return from a list.
+  
+  R returns "list" when running class(student "[grades"]), and "numeric" when running class(student[="grades"]]). It is because single brackets [] slice the list and return a sub-list containing the selected element (a smaller list wrapper) while Double brackets [[ ]] extract the actual underlying content or object stored inside that element (in this case, the raw numeric vector of grades).
+  
+Question #11:
+
+Why do you think R makes a distinction between [ ] and [[ ]] for lists, but a vector only needs [ ]? Think about what a list can contain that a vector cannot.
+
+  Single brackets [] are adequate to extract elements while maintaining the vector structure since a vector is a single, homogeneous data structure where each element must be of the same basic type. A list, on the other hand, is a heterogeneous container that can contain vectors, matrices, other lists, or completely different data types as its individual elements. R uses double brackets [[ ]] to drill inside the container and retrieve the bare object stored at that position, and single brackets [] to slice a portion of the list (returning a sub-list).
+  
+Part E — Critical Thinking Challenge
+```{r}
+inventory <- list(
+  item = c("Notebook", "Pen", "Eraser"),
+  price = c(25.50, 10.00, 5.00),
+  in_stock = c(TRUE, TRUE, FALSE)
+)
+inventory$item[inventory$in_stock]
+```
+
+```{r}
+inventory$item <- append(inventory$item, "Ruler")
+inventory$price <- append(inventory$price, 15.00)
+inventory$in_stock <- append(inventory$in_stock, TRUE)
+```
+Question #12:
+
+In challenge-1, you combined logical indexing on one vector (in_stock) to filter a different vector (item) inside the same list. Explain, step by step, why inventory$item[inventory$in_stock] works even though item and in_stock are stored as separate elements of the list.
+
+  The logical vector c(TRUE, TRUE, FALSE) is first extracted by inventory$in_stock. Second, the character vector c ("Notebook", "Pen", "Eraser") is extracted by inventory$item. R evaluates the two vectors position-by-position because they have the same length (three elements) when we pass inventory$in_stock inside the single brackets inventory$item[...]. R keeps "Notebook" and "Pen" after evaluating TRUE at positions 1 and 2, but discards "Eraser" because position 3 is FALSE.
+
+Question #13:
+
+Suppose a classmate stores related data as three separate, unconnected vectors (item_names, item_prices, item_stock) instead of grouping them into one list like inventory. What risks or bugs could this create as the dataset grows or gets reordered? Argue for or against using a list (or, later, a data frame) instead of separate vectors.
+
+  There are serious risks associated with storing related data as distinct, unconnected vectors, such as unintentional desynchronization if one vector is filtered, sorted, or appended to without concurrently changing the others. When prices or stock statuses are mismatched with incorrect item names, this results in silent data corruption. All related variables can be passed together in functions, operations maintain corresponding records aligned, and structure is enforced by grouping related vectors inside a list (or data frame).
+  
+Conclusion
+  In R, a list is a flexible container that can hold elements of various data types, lengths, and structures (this includes vectors or other lists), while a vector is a single-dimensional data structure that stores elements of the exact same data type. When performing arithmetic and element-wise operations on a single categorical variable or a homogeneous series of measurement data, vectors work best. Lists, on the other hand, are perfect for arranging records with different attributes, key-value pairs, model outputs, and complicated, multi-type datasets.
