@@ -1,13 +1,12 @@
 ---
-title: "RPractical_Domael"
+title: "R Programming Practical Examination"
 author: "Jastine Mae Domael"
 date: "2026-11-11"
 output:
-  pdf_document: default
-  html_document: default
+  html_document:
+    df_print: paged
 ---
-
-Part A: Basic Operations
+Part A: basic Operations
 
 A1 Create v as the sequence 5, 10, 15, ..., 50 using seq(). Print its length, sume and mean.
 ```{r}
