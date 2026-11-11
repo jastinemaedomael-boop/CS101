@@ -2,9 +2,12 @@
 title: "RPractical_Domael"
 author: "Jastine Mae Domael"
 date: "2026-11-11"
-output: pdf_document
+output:
+  pdf_document: default
+  html_document: default
 ---
-Part A: basic Operations
+
+Part A: Basic Operations
 
 A1 Create v as the sequence 5, 10, 15, ..., 50 using seq(). Print its length, sume and mean.
 ```{r}
